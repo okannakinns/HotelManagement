@@ -1,0 +1,107 @@
+﻿@using WebApp.Models;
+@model List<WebApp.Models.OdaKontenjan>
+
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/Shared/_LayoutWebAdmin.cshtml";
+}
+<section id="main-content">
+    <section class="wrapper">
+        <div class="row">
+            <div class="col-lg-6">
+                <section class="panel">
+                    <header class="panel-heading">
+                        Oda Kontenjan (@Model.Count() Adet Kayıt Bulunmaktadır)
+                    </header>
+                    <div class="panel-body">
+                        <form method="post" action="@Url.Action("Ekle", "OdaKontenjan")">
+                            <div class="row">
+                                <div class="form-group col-md-5">
+                                    <label for="OdaId">Oda</label>
+                                    <select class="form-control" id="OdalarId" name="OdalarId" >
+                                    @foreach (var odalar in ViewBag.Odalar)
+                                    {
+                                            <option value="@odalar.Id">@odalar.Adi</option>
+                                    }
+                                    </select>
+                                </div>
+                                <div class="form-group col-md-3">
+                                    <label for="Miktar">Miktar</label>
+                                    <input type="number" class="form-control" id="Miktar" name="Miktar" onkeypress="return event.charCode >= 48 && event.charCode <= 57" min="0" max="10">
+                                </div>
+                            </div>
+
+                            <div class="row">
+
+                                <div class="form-group col-md-4">
+                                    <label for="BaslangicTarihi">Başlangıç Tarihi</label>
+                                    <input type="datetime-local" class="form-control" id="BaslangicTarihi" name="BaslangicTarihi">
+                                </div>
+                                <div class="form-group col-md-4">
+                                    <label for="BitisTarihi">Bitiş Tarihi</label>
+                                    <input type="datetime-local" class="form-control" id="BitisTarihi" name="BitisTarihi">
+                                </div>
+
+
+                            </div>
+                            <button type="submit" class="btn btn-info">Ekle</button>
+                        </form>
+                        @if (!string.IsNullOrEmpty(ViewBag.ErrorMessage))
+                        {
+                            <div style="margin-top:10px;" class="alert alert-block alert-danger fade in">
+                                <button data-dismiss="alert" class="close close-sm" type="button">
+                                    <i class="icon-remove"></i>
+                                </button>
+                                <strong>Hata!</strong> @ViewBag.ErrorMessage
+                            </div>
+                        }
+
+
+                    </div>
+                </section>
+            </div>
+        </div>
+        <section class="panel">
+            <table class="table table-striped">
+                <thead>
+                    <tr>
+
+                        <th>Oda</th>
+                        <th>Miktar</th>
+
+
+                        <th>Başlangıç Tarihi</th>
+                        <th>Bitiş Tarihi</th>
+
+                    </tr>
+                </thead>
+                <tbody>
+                                    @foreach (var odaKontenjan in Model)
+                                    {
+                        <tr>
+
+                            <td>@odaKontenjan.Odalar.Adi</td>
+                            <td>@odaKontenjan.Miktar</td>
+
+
+                            <td>@odaKontenjan.BaslangicTarihi</td>
+                            <td>@odaKontenjan.BitisTarihi</td>
+
+                            <td>
+                                <form method="post" action="@Url.Action("Update", "OdaKontenjan")" style="display: inline;">
+                                    <input type="hidden" name="id" value="@odaKontenjan.Id" />
+                                    <button type="submit" class="btn btn-primary btn-xs"><i class="icon-pencil"></i></button>
+                                </form>
+                                <form method="post" action="@Url.Action("Sil", "OdaKontenjan")" style="display: inline;">
+                                    <input type="hidden" name="id" value="@odaKontenjan.Id" />
+                                    <button type="submit" class="btn btn-danger btn-xs" onclick="confirmSilme(event)"><i class="icon-trash"></i></button>
+                                </form>
+                            </td>
+
+                        </tr>
+                                    }
+                </tbody>
+            </table>
+        </section>
+    </section>
+</section>

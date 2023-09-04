@@ -1,0 +1,263 @@
+﻿@using WebApp.Models;
+@model List<WebApp.Models.Odalar>
+
+
+
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/Shared/_LayoutWebAdmin.cshtml";
+}
+<section id="main-content">
+    <section class="wrapper">
+        <div class="row">
+            <div class="col-lg-12">
+                <section class="panel">
+                    <header class="panel-heading">
+                        Rezervasyon Ekranı
+                    </header>
+                    <div class="panel-body" style="padding-bottom:80px;">
+                        <div class="row">
+                            <div class="col-xs-4 col-sm-4 col-md-4">
+                                <label for="Kat">Kat</label>
+                                <select name="Kat" class="form-control" id="Kat" onchange="filterByKatAndDurum(this.value)">
+                                    <option value="0">Tümü</option>
+                                    @foreach (var oda in ViewBag.Katlar)
+                                    {
+
+                                        <option value="@oda.Kat">@oda.Kat</option>
+                                       
+                                    }
+                                </select>
+                            </div>
+                            <div class="col-xs-4 col-sm-4 col-md-4">
+                                <label for="OdaDurumId">Durumu</label>
+                                <select name="OdaDurumId" class="form-control" id="OdaDurumId" onchange="filterByKatAndDurum(this.value)">
+                                    <option value="0">Tümü</option>
+                                    @foreach (var durum in ViewBag.OdaDurum)
+                                    {
+                                        <option value="@durum.Id">@durum.Adi</option>
+                                    }
+                                </select>
+                            </div>
+                            <div class="col-xs-3 col-sm-2 col-md-2">
+                               <h5 style="margin-top:25px;" class="result-info"></h5>
+                            </div>
+                           
+                        </div>
+                        <div class="lejant">
+                            <ul >
+                                <li>
+                                    <img src="/WebAdminTheme/img/house-blank-bos.png" alt="Boş" class="img-responsive">
+                                    <span>Boş</span>
+                                </li>
+                                <li>
+                                    <img src="/WebAdminTheme/img/house-blank-kirmizi.png" alt="Dolu" class="img-responsive">
+                                    <span>Dolu</span>
+                                </li>
+                              
+                                <li>
+                                    <img src="/WebAdminTheme/img/house-blank-mavi.png" alt="Rezerve" class="img-responsive">
+                                    <span>Rezerve</span>
+                                </li>
+                                  <li>
+                                    <img src="/WebAdminTheme/img/house-blank-sari.png" alt="Arızalı" class="img-responsive">
+                                    <span>Arızalı</span>
+                                </li>
+                            </ul>
+                        </div>
+                        <div class="col-md-7 col-lg-8" style="margin-top:20px;">
+                      <div class="row">
+                        @foreach (var oda in Model)
+                        {
+                           
+                                        
+                                   
+
+                                if( oda.OdaDurumId==2 ){
+
+                                        <div class="col-xs-6 col-sm-5 col-md-3 col-lg-2">
+                                            <div id="BosOda" class="image-container" data-oda-durum-id="@oda.OdaDurumId" data-tip-id="@oda.OdaTipId" data-kat-id="@oda.Kat">
+                                            <img src="/WebAdminTheme/img/house-blank-bos.png" alt="Boş" class="img-responsive">
+                                    <span>@oda.Adi</span>
+                                    <div class="mobile">
+                                      <span>Boş</span>
+                                    </div>
+                                </div>
+                                </div>
+                            }
+                            if (oda.OdaDurumId == 3)
+                            
+                            {
+                                        <div class="col-xs-6 col-sm-5 col-md-3 col-lg-2">
+                                            <div class="image-container" data-oda-durum-id="@oda.OdaDurumId" data-tip-id="@oda.OdaTipId" data-kat-id="@oda.Kat">
+                                        <img src="/WebAdminTheme/img/house-blank-kirmizi.png"  alt="Dolu" class="img-responsive">
+                                        <span>@oda.Adi</span>
+                                        <div class="mobile">
+                                      <span>Dolu</span>
+                                    </div>
+                                    </div>
+                                </div>
+                            }
+                            if (oda.OdaDurumId == 4)
+
+                            {
+                                        <div class="col-xs-6 col-sm-5 col-md-3 col-lg-2">
+                                            <div  class="image-container" data-oda-durum-id="@oda.OdaDurumId" data-tip-id="@oda.OdaTipId" data-kat-id="@oda.Kat">
+                                        <img  src="/WebAdminTheme/img/house-blank-mavi.png" alt="Rezerve" class="img-responsive">
+                                        <span>@oda.Adi</span>
+                                                <div class="mobile">
+                                                    <span>Rezerve</span>
+                                                </div>
+                                    </div>
+                                </div>
+                            }
+                            if (oda.OdaDurumId == 5)
+
+                            {
+                                        <div class="col-xs-6 col-sm-5 col-md-3 col-lg-2">
+                                            <div class="image-container" data-oda-durum-id="@oda.OdaDurumId" data-tip-id="@oda.OdaTipId" data-kat-id="@oda.Kat">
+                                        <img src="/WebAdminTheme/img/house-blank-sari.png" alt="Arızalı" class="img-responsive">
+                                        <span>@oda.Adi</span>
+                                                <div class="mobile">
+                                                    <span>Rezerve</span>
+                                                </div>
+                                    </div>
+                                </div>
+                            }
+                                    
+                        }
+                                
+                                <div id="notfound" style="display: none; margin-top:40px;">
+                                    <h3>Sonuç Bulunamadı.</h3>
+                                </div>
+                                
+                        </div>
+
+                    </div>
+                    </div>
+                </section>
+            </div>
+        </div>
+    </section>
+</section>
+
+
+
+@*<script>
+    function filterByKatAndDurum(selectedKat, selectedDurum) {
+        var odaResimleri = document.getElementsByClassName("image-container");
+        var notfound = document.getElementById("notfound");
+        var matchFound = false;
+
+        for (var i = 0; i < odaResimleri.length; i++) {
+            var odaResim = odaResimleri[i];
+            var kat = odaResim.getAttribute("data-kat-id");
+            var durum = odaResim.getAttribute("data-oda-durum-id");
+
+            if ((selectedKat === "0" || kat === selectedKat) && (selectedDurum === "0" || durum === selectedDurum)) {
+                odaResim.style.display = "";
+                odaResim.parentElement.style.display = "";
+                matchFound = true;
+            } else {
+                odaResim.style.display = "none";
+                odaResim.parentElement.style.display = "none";
+            }
+        }
+
+        if (!matchFound) {
+            notfound.style.display = "block";
+        } else {
+            notfound.style.display = "none";
+        }
+    }
+
+
+    window.onload = function () {
+        var kat = document.getElementById("Kat");
+        var odaDurumId = document.getElementById("OdaDurumId");
+
+        kat.addEventListener("change", function () {
+            filterByKatAndDurum(kat.value, odaDurumId.value);
+        });
+
+        odaDurumId.addEventListener("change", function () {
+            filterByKatAndDurum(kat.value, odaDurumId.value);
+        });
+
+        if (kat.value === "" && odaDurumId.value === "") {
+            filterByKatAndDurum("", "");
+        }
+    }
+
+    
+
+</script>*@
+<script src="/WebAdminTheme/js/jquery-1.8.3.min.js"></script>
+
+<script>
+    $(document).ready(function () {
+        var SonucInfo = $(".result-info");
+        var odaResimleri = $(".image-container");
+        var notfound = $("#notfound");
+
+        SonucInfo.text(odaResimleri.length+" Oda Listelendi.");
+
+        function filterByKatAndDurum(selectedKat, selectedDurum) {
+            var matchFound = false;
+            var filtreSonucu = 0;
+
+            odaResimleri.each(function () {
+                var odaResim = $(this);
+                var kat = odaResim.attr("data-kat-id");
+                var durum = odaResim.attr("data-oda-durum-id");
+
+                if ((selectedKat === "0" || kat === selectedKat) && (selectedDurum === "0" || durum === selectedDurum)) {
+                    odaResim.show();
+                    odaResim.parent().show();
+                    filtreSonucu++;
+                    matchFound = true;
+                } else {
+                    odaResim.hide();
+                    odaResim.parent().hide();
+                }
+            });
+
+            if (!matchFound) {
+                notfound.show();
+                SonucInfo.hide();
+            } else {
+                SonucInfo.text(filtreSonucu + " Oda Listelendi.");
+                SonucInfo.show();
+                notfound.hide();
+            }
+        }
+
+        var kat = $("#Kat");
+        var odaDurumId = $("#OdaDurumId");
+
+        kat.on("change", function () {
+            filterByKatAndDurum(kat.val(), odaDurumId.val());
+        });
+
+        odaDurumId.on("change", function () {
+            filterByKatAndDurum(kat.val(), odaDurumId.val());
+        });
+
+        if (kat.val() === "" && odaDurumId.val() === "") {
+            filterByKatAndDurum("", "");
+        }
+    });
+
+</script>
+
+
+
+
+
+
+
+
+
+       
+               
+

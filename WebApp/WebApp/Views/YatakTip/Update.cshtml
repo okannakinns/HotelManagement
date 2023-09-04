@@ -1,0 +1,61 @@
+﻿@using WebApp.Models;
+@model YatakTip
+
+@{
+    ViewData["Title"] = "Update";
+    Layout = "~/Views/Shared/_LayoutWebAdmin.cshtml";
+}
+
+<section id="main-content">
+    <section class="wrapper">
+        <div class="row">
+            <div class="col-lg-4">
+                <section class="panel">
+                    <header class="panel-heading">
+                        Yatak Tipi Güncelle
+                    </header>
+                    <div class="panel-body">
+                        <form method="post" action="@Url.Action("DoUpdate", "YatakTip")">
+                            <div class="row">
+                                <input type="hidden" class="form-control" id="Id" name="Id" value="@Model.Id">
+                                <div class="form-group col-md-8">
+                                    <label for="Adi">Adı</label>
+                                    <input type="text" class="form-control" id="Adi" name="Adi" value="@Model.Adi">
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="form-group col-md-4">
+                                    <input type="hidden" class="form-control" id="Durumu" name="Durumu" value="@Model.Durumu">
+                                    <input type="hidden" class="form-control" id="EklenmeTarihi" name="EklenmeTarihi" value="@Model.EklenmeTarihi">
+                                </div>
+                               
+                                   
+                                    <input type="hidden" class="form-control" id="GuncellenmeTarihi" name="GuncellenmeTarihi" value="@Model.GuncellenmeTarihi">
+                                </div>
+                            <div class="row">
+                                <div class="form-group col-md-6">
+                                    <button type="submit" class="btn btn-info">Güncelle</button>
+                                </div>
+                            </div>
+                            @if (!string.IsNullOrEmpty(ViewBag.ErrorMessage))
+                            {
+                                <div style="margin-top:10px;" class="alert alert-block alert-danger fade in">
+                                    <button data-dismiss="alert" class="close close-sm" type="button">
+                                        <i class="icon-remove"></i>
+                                    </button>
+                                    <strong>Hata!</strong> @ViewBag.ErrorMessage
+                                </div>
+                            }
+                        </form>
+                            </div>
+
+                            
+                       
+                   
+
+                    </div>
+        </div>
+                </section>
+         
+      
+    </section>

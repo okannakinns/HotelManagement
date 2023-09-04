@@ -1,0 +1,135 @@
+﻿@using WebApp.Models;
+@model List<WebApp.Models.Musteri>
+
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/Shared/_LayoutWebAdmin.cshtml";
+}
+<section id="main-content">
+    <section class="wrapper">
+        <div class="row">
+            <div class="col-lg-5">
+                <section class="panel">
+                    <header class="panel-heading">
+                        Müşteri (@Model.Count() Adet Kayıt Bulunmaktadır)
+                    </header>
+                    <div class="panel-body">
+                        <form method="post" action="@Url.Action("Ekle", "Musteri")">
+                           
+                                <div class="form-group col-md-5">
+                                    <label for="adiSoyadi">Adı Soyadı</label>
+                                    <input type="text" class="form-control" id="adiSoyadi" name="AdiSoyadi">
+                                </div>
+                         
+                          
+                                <div class="form-group col-md-5">
+                                    <label for="tcNo">TC Kimlik No</label>
+                                    <input type="text" class="form-control" id="TcNo" name="TcNo" onkeypress="return event.charCode >= 48 && event.charCode <= 57" minlength="11" maxlength="11">
+                                </div>
+                            
+                         
+                                <div class="form-group col-md-5">
+                                    <label for="telefon">Telefon</label>
+                                <input type="text" placeholder="(500) 000-0000" class="form-control" data-mask="(999) 999-9999" id="telefon" name="Telefon" onkeypress="return event.charCode >= 48 && event.charCode <= 57" minlength="10" maxlength="15">
+                                    
+                                </div>
+                            
+                           
+                                <div class="form-group col-md-5">
+                                    <label for="email">Email</label>
+                                    <input type="text" class="form-control" id="email" name="Email" maxlength="50">
+                                </div>
+                           
+                           
+                                <div class="form-group col-md-10">
+                                    <label for="aciklama">Açıklama</label>
+                                    <textarea class="form-control" id="aciklama" name="Aciklama" rows="3" maxlength="130"></textarea>
+                                </div>
+
+                           
+                            <div class="form-group col-md-8">
+                                <button type="submit" class="btn btn-info">Ekle</button>
+                            </div>
+                            
+
+                         
+                               
+                           
+
+
+                        </form>
+                      
+                        
+                    </div>
+                   
+                </section>
+            </div>
+            <div class="col-md-5">
+                @if (!string.IsNullOrEmpty(ViewBag.ErrorMessage))
+                {
+                    <div class="alert alert-block alert-danger fade in">
+                        <button data-dismiss="alert" class="close close-sm" type="button">
+                            <i class="icon-remove"></i>
+                        </button>
+                        <strong>Hata!</strong> @ViewBag.ErrorMessage
+                    </div>
+                }
+            </div>
+           
+        </div>
+
+
+
+
+
+        <section class="panel">
+
+            <table class="table table-striped">
+                <thead>
+                    <tr>
+                        
+                        <th>Adı Soyadı</th>
+                        <th>TC No</th>
+                        <th>Telefon</th>
+                        <th>Açıklama</th>
+                        
+                        <th>E-mail</th>
+                        
+                        
+                        
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var musteri in Model)
+                    {
+                        <tr>
+                            
+                            <td>@musteri.AdiSoyadi</td>
+                            <td>@musteri.TcNo</td>
+                            <td>@musteri.Telefon</td>
+                            <td>@musteri.Aciklama</td>
+                            
+                           
+                            <td>@musteri.Email</td>
+                           @* <td>@musteri.KaraListe</td>
+                            <td>@musteri.KaraListeAciklama</td>*@
+                           
+                            <td>
+                                <form method="post" action="@Url.Action("Update", "Musteri")" style="display: inline;">
+                                    <input type="hidden" name="id" value="@musteri.Id" />
+                                    <button type="submit" class="btn btn-primary btn-xs"><i class="icon-pencil"></i></button>
+                                </form>
+                                <form method="post" action="@Url.Action("Sil", "Musteri")" style="display: inline;">
+                                    <input type="hidden" name="id" value="@musteri.Id" />
+                                    <button type="submit" class="btn btn-danger btn-xs" onclick="confirmSilme(event)"><i class="icon-trash"></i></button>
+                                </form>
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </section>
+    </section>
+    </section>
+
+

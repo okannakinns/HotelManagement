@@ -1,0 +1,92 @@
+﻿@using WebApp.Models;
+@model List<WebApp.Models.OdaTip>
+
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/Shared/_LayoutWebAdmin.cshtml";
+}
+<section id="main-content">
+    <section class="wrapper">
+        <div class="row">
+            <div class="col-lg-6">
+        <section class="panel">
+            <header class="panel-heading">
+                Oda Tip (@Model.Count() Adet Kayıt Bulunmaktadır)
+            </header>
+            <div class="panel-body">
+                <form method="post" action="@Url.Action("Ekle", "OdaTip")">
+                            <div class="row">
+                    <div class="form-group col-md-8">
+                        <label for="Adi">Adı</label>
+                        <input type="text" class="form-control" id="Adi" name="Adi">
+                    </div>
+                            </div>
+                    @*<div class="row">
+                    <div class="form-group col-md-4">
+                        <label for="EklenmeTarihi">Eklenme Tarihi</label>
+                        <input type="datetime-local" class="form-control" id="EklenmeTarihi" name="EklenmeTarihi">
+                    </div>
+                    <div class="form-group col-md-4">
+                        <label for="GuncellenmeTarihi">Güncellenme Tarihi</label>
+                        <input type="datetime-local" class="form-control" id="GuncellenmeTarihi" name="GuncellenmeTarihi">
+                    </div>
+                     </div>*@
+                        
+                    <div class="row">
+                        <div class="form-group col-md-6">
+                            <button type="submit" class="btn btn-info">Ekle</button>
+                        </div>
+                    </div>
+                </form>
+                        @if (!string.IsNullOrEmpty(ViewBag.ErrorMessage))
+                        {
+                            <div style="margin-top:10px;" class="alert alert-block alert-danger fade in">
+                                <button data-dismiss="alert" class="close close-sm" type="button">
+                                    <i class="icon-remove"></i>
+                                </button>
+                                <strong>Hata!</strong> @ViewBag.ErrorMessage
+                            </div>
+                        }
+                    </div>
+                    </section>
+            </div>
+            </div>
+        <section class="panel">
+
+            <table class="table table-striped">
+                <thead>
+                    <tr>
+                        <th>Id</th>
+                        <th>Adı</th>
+                        
+                        
+
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var odatip in Model)
+                    {
+                        <tr>
+                            <td>@odatip.Id</td>
+                            <td>@odatip.Adi</td>
+                            
+                           
+
+                            <td>
+                                <form method="post" action="@Url.Action("Update", "OdaTip")" style="display: inline;">
+                                    <input type="hidden" name="id" value="@odatip.Id" />
+                                    <button type="submit" class="btn btn-primary btn-xs"><i class="icon-pencil"></i></button>
+                                </form>
+                                <form method="post" action="@Url.Action("Sil", "OdaTip")" style="display: inline;">
+                                    <input type="hidden" name="id" value="@odatip.Id" />
+                                    <button type="submit" class="btn btn-danger btn-xs" onclick="confirmSilme(event)"><i class="icon-trash"></i></button>
+                                </form>
+                            </td>
+
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </section>
+    </section>
+</section>

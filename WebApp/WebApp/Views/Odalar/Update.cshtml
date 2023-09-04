@@ -1,0 +1,105 @@
+﻿@using WebApp.Models;
+@model Odalar
+
+@{
+    ViewData["Title"] = "Update";
+    Layout = "~/Views/Shared/_LayoutWebAdmin.cshtml";
+}
+
+<section id="main-content">
+    <section class="wrapper">
+        <div class="row">
+            <div class="col-lg-6">
+                <section class="panel">
+                    <header class="panel-heading">
+                        Oda Güncelle
+                    </header>
+                    <div class="panel-body">
+                        <form method="post" action="@Url.Action("DoUpdate", "Odalar")" role="form">
+                            <div class="form-group row">
+                                <input type="hidden" class="form-control" id="Id" name="Id" value="@Model.Id">
+                                <div class="col-md-4">
+                                    <label for="adi">Adı</label>
+                                    <input type="text" class="form-control" id="adi" name="Adi" value="@Model.Adi">
+                                </div>
+                                <div class="col-md-4">
+                                    <label for="YatakTip">Yatak</label>
+                                    <select name="YatakTipId" class="form-control" id="YatakTipId">
+                                        @foreach (var yatak in ViewBag.YatakTipleri)
+                                        {
+                                            <option value="@yatak.Id" @(yatak.Id == Model.YatakTipId ? "selected" : "")>@yatak.Adi</option>
+                                        }
+                                    </select>
+                                </div>
+
+                                <div class="col-md-4">
+                                    <label for="OdaTip">Oda Tipi</label>
+                                    <select name="OdaTipId" class="form-control" id="OdaTipId">
+                                        @foreach (var oda in ViewBag.OdaTipleri)
+                                        {
+                                            <option value="@oda.Id" @(oda.Id == Model.OdaTipId ? "selected" : "")>@oda.Adi</option>
+                                        }
+                                    </select>
+                                </div>
+
+                            </div>
+                            <div class="form-group row">
+                                <div class="col-md-4">
+                                    <label for="OdaDurum">Oda Durumu</label>
+                                    <select name="OdaDurumId" class="form-control" id="OdaDurumId">
+                                        @foreach (var durum in ViewBag.OdaDurumlari)
+                                        {
+                                            <option value="@durum.Id" @(Model?.OdaDurumId == durum.Id ? "selected" : "")>@durum.Adi</option>
+                                        }
+                                    </select>
+                                </div>
+                                <input type="hidden" class="form-control" id="Durumu" name="Durumu" value="@Model.Durumu">
+                                <input type="hidden" class="form-control" id="EklenmeTarihi" name="EklenmeTarihi" value="@Model.EklenmeTarihi">
+                                <input type="hidden" class="form-control" id="GuncellenmeTarihi" name="GuncellenmeTarihi" value="@Model.GuncellenmeTarihi">
+                                <input type="hidden" class="form-control" id="Manzara" name="Manzara" value="@Model.Manzara">
+                                <input type="hidden" class="form-control" id="KapasiteHarici" name="KapasiteHarici" value="@Model.KapasiteHarici">
+                               
+
+                                <div class="col-md-3">
+                                    <label for="kisiSayisi">Kişi Sayısı</label>
+                                    <input type="number" class="form-control" id="kisiSayisi" name="KisiSayisi" value="@Model.KisiSayisi">
+                                </div>
+
+                                <div class="col-md-3">
+                                    <label for="odaSayisi">Oda Sayısı</label>
+                                    <input type="number" class="form-control" id="odaSayisi" name="OdaSayisi" value="@Model.OdaSayisi">
+                                </div>
+                                <div class="col-md-2">
+                                    <label for="kat">Kat</label>
+                                    <input type="number" class="form-control" id="kat" name="Kat" value="@Model.Kat">
+                                </div>
+                               
+                            </div>
+
+                            <div class="form-group row">
+                                <div class="col-md-6">
+                                    <label for="ozellikler">Özellikler</label>
+                                    <textarea class="form-control" id="ozellikler" name="Ozellikler" rows="3" maxlength="130">@Model.Ozellikler</textarea>
+                                </div>
+                                <div class="col-md-6">
+                                    <label for="aciklama">Açıklama</label>
+                                    <textarea class="form-control" id="aciklama" name="Aciklama" rows="3" maxlength="130">@Model.Aciklama</textarea>
+                                </div>
+                            </div>
+                            <button type="submit" class="btn btn-info">Güncelle</button>
+                        </form>
+                        @if (!string.IsNullOrEmpty(ViewBag.ErrorMessage))
+                        {
+                            <div style="margin-top:10px;" class="alert alert-block alert-danger fade in">
+                                <button data-dismiss="alert" class="close close-sm" type="button">
+                                    <i class="icon-remove"></i>
+                                </button>
+                                <strong>Hata!</strong> @ViewBag.ErrorMessage
+                            </div>
+                        }
+                    </div>
+                </section>
+            </div>
+        </div>
+    </section>
+</section>

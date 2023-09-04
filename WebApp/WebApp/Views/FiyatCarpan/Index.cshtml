@@ -1,0 +1,152 @@
+﻿@using WebApp.Models;
+@model List<WebApp.Models.FiyatCarpan>
+
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/Shared/_LayoutWebAdmin.cshtml";
+}
+<section id="main-content">
+    <section class="wrapper">
+        <div class="row">
+            <div class="col-lg-5">
+        <section class="panel">
+            <header class="panel-heading">
+                Fiyat Çarpan (@Model.Count() Adet Kayıt Bulunmaktadır)
+            </header>
+            <div class="panel-body">
+                        <form method="post" action="@Url.Action("Ekle", "FiyatCarpan")">
+                          
+                                <div class="form-group col-md-4">
+                                    <label for="Adi">Oda</label>
+                                    <select name="OdalarId" class="form-control" id="OdalarId">
+                                        @foreach (var oda in ViewBag.Odalar)
+                                        {
+                                            <option value="@oda.Id">@oda.Adi</option>
+                                        }
+                                    </select>
+                                </div>
+                                <div class="form-group col-md-4">
+                                    <label for="TekKisilik">Tek Kişi</label>
+                                    <input type="text" class="form-control" id="TekKisilik" name="TekKisilik" maxlength="6" onkeypress="return IsNumericOrComma(event)">
+                                </div>
+                                <div class="form-group col-md-4">
+                                    <label for="CiftKisilik">Çift Kişi</label>
+                                    <input type="text" class="form-control" id="CiftKisilik" name="CiftKisilik" maxlength="6" onkeypress="return IsNumericOrComma(event)">
+                                </div>
+                                <div class="form-group col-md-4">
+                                    <label for="UcKisilik">Üç Kişi</label>
+                                    <input type="text" class="form-control" id="UcKisilik" name="UcKisilik" maxlength="6" onkeypress="return IsNumericOrComma(event)">
+                                </div>
+                                <div class="form-group col-md-4">
+                                    <label for="DortKisilik">Dört Kişi</label>
+                                    <input type="text" class="form-control" id="DortKisilik" name="DortKisilik" maxlength="6" onkeypress="return IsNumericOrComma(event)">
+                                </div>
+                        
+                            
+                                <div class="form-group col-md-4">
+                                    <label for="BesKisilik">Beş Kişi</label>
+                                    <input type="text" class="form-control" id="BesKisilik" name="BesKisilik" maxlength="6" onkeypress="return IsNumericOrComma(event)">
+                                </div>
+                                <div class="form-group col-md-4">
+                                    <label for="AltiKisilik">Altı Kişi</label>
+                                    <input type="text" class="form-control" id="AltiKisilik" name="AltiKisilik" maxlength="6" onkeypress="return IsNumericOrComma(event)">
+                                </div>
+                                <div class="form-group col-md-4">
+                                    <label for="Cocuk">Çocuk</label>
+                                    <input type="text" class="form-control" id="Cocuk" name="Cocuk" maxlength="6" onkeypress="return IsNumericOrComma(event)">
+                                </div>
+                              
+                                
+                                    <div class="form-group col-md-6">
+                                        <button type="submit" class="btn btn-info">Ekle</button>
+                                    </div>
+                           
+                           
+                        </form>
+                       
+
+                       
+
+                    </div>
+                </section>
+            </div>
+            <div class="col-lg-5">
+                @if (!string.IsNullOrEmpty(ViewBag.ErrorMessage))
+                {
+                    <div style="margin-top:10px;" class="alert alert-block alert-danger fade in">
+                        <button data-dismiss="alert" class="close close-sm" type="button">
+                            <i class="icon-remove"></i>
+                        </button>
+                        <strong>Hata!</strong> @ViewBag.ErrorMessage
+                    </div>
+                }
+            </div>
+        </div>
+
+        <section class="panel">
+
+            <table class="table table-striped">
+                <thead>
+                    <tr>
+                       
+                        <th>Oda</th>
+                        <th>Tek</th>
+                        <th>Çift</th>
+                        <th>Üç</th>
+                        <th>Dört</th>
+                        <th>Beş</th>
+                        <th>Altı</th>
+                        <th>Çocuk</th>
+
+                        
+                        
+                        
+
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var carpan in Model)
+                    {
+                        <tr>
+                            <td>@carpan.Odalar.Adi</td>
+                            <td>@carpan.TekKisilik</td>
+                            <td>@carpan.CiftKisilik</td>
+                            <td>@carpan.UcKisilik</td>
+                            <td>@carpan.DortKisilik</td>
+                            <td>@carpan.BesKisilik</td>
+                            <td>@carpan.AltiKisilik</td>
+                            <td>@carpan.Cocuk</td> 
+                           
+                            <td>
+                                <form method="post" action="@Url.Action("Update", "FiyatCarpan")" style="display: inline;">
+                                    <input type="hidden" name="id" value="@carpan.Id" />
+                                    <button type="submit" class="btn btn-primary btn-xs"><i class="icon-pencil"></i></button>
+                                </form>
+                                <form method="post" action="@Url.Action("Sil", "FiyatCarpan")" style="display: inline;">
+                                    <input type="hidden" name="id" value="@carpan.Id" />
+                                    <button type="submit" class="btn btn-danger btn-xs" onclick="confirmSilme(event)"><i class="icon-trash"></i></button>
+                                </form>
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+
+
+        </section>
+    </section>
+</section>
+
+                                <script>
+    function IsNumericOrComma(event) {
+        var charCode = event.which ? event.which : event.keyCode;
+
+        // Sayılar: 0-9
+        // Virgül: ,
+        if ((charCode >= 48 && charCode <= 57) || charCode === 44) {
+            return true;
+        }
+
+        return false;
+    }
+                                </script>

@@ -1,0 +1,337 @@
+﻿@using WebApp.Models;
+@model List<WebApp.Models.OtelRezervasyon>
+
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/Shared/_LayoutWebAdmin.cshtml";
+}
+<section id="main-content">
+    <section class="wrapper">
+        <div class="row">
+            <div class="col-lg-8">
+                <section class="panel">
+                    <header class="panel-heading">
+                        Otel Rezervasyon (@Model.Count() Adet Kayıt Bulunmaktadır)
+                    </header>
+                    <div class="panel-body">
+                        <form method="post" action="@Url.Action("Ekle", "OtelRezervasyon")">
+                            <div class="row">
+                               
+                                <div class="form-group col-md-5">
+                                    <label for="Adi">Oda</label>
+                                    <select name="OdalarId" class="form-control" id="OdalarId">
+                                        @foreach (var oda in ViewBag.Odalar)
+                                        {
+                                            <option value="@oda.Id">@oda.Adi</option>
+                                        }
+                                    </select>
+                                </div>
+                                <div class="form-group col-md-5">
+                                    <label for="Adi">Müşteri</label>
+                                    <select name="MusteriId" class="form-control" id="MusteriId">
+                                        @foreach (var musteri in ViewBag.Musteri)
+                                        {
+                                            <option value="@musteri.Id">@musteri.AdiSoyadi</option>
+                                        }
+                                    </select>
+                                </div>
+                                
+                            </div>
+                               @* <div class="form-group col-md-4">
+                                    <label for="Adi">Fiyat</label>
+                                    <select name="FiyatId" class="form-control" id="FiyatId">
+                                        @foreach (var fiyat in ViewBag.Fiyat)
+                                        {
+                                            <option value="@fiyat.Id">@fiyat.Tutar</option>
+                                        }
+                                    </select>
+                                </div>*@
+                           
+                                <div class="row">
+
+                           
+
+                                <div class="form-group col-md-5">
+                                    <label for="GirisTarihi">Giriş Tarihi</label>
+                                    <input type="datetime-local" class="form-control" id="GirisTarihi" name="GirisTarihi">
+                                </div>
+                                <div class="form-group col-md-5">
+                                    <label for="CikisTarihi">Çıkış Tarihi</label>
+                                    <input type="datetime-local" class="form-control" id="CikisTarihi" name="CikisTarihi">
+                                </div>
+                               @* <div class="form-group col-md-4">
+                                    <label for="KonaklamaGunSayisi">Konaklama Gün Sayısı</label>
+                                    <input type="text" class="form-control" id="KonaklamaGunSayisi" name="KonaklamaGunSayisi">
+                                </div>*@
+
+                            </div>
+                            <div class="row">
+                                <div class="form-group col-md-3">
+                                    <label for="Yetiskin">Yetişkin</label>
+                                    <input type="number" min="0" class="form-control" id="Yetiskin" name="Yetiskin">
+                                </div>
+                               @* <div class="form-group col-md-2">
+                                    <label for="Cocuk_1">Çocuk</label>
+                                <input type="number" min="0" class="form-control" id="Cocuk_1" name="Cocuk_1">
+                                </div>*@
+
+                            <div id="spinner4">
+                                <div class="form-group col-md-4">
+                                        <label for="CocukSayisi">Çocuk</label>
+                                    <div class="input-group" style="width:120px;">
+                                        <div class="spinner-buttons input-group-btn">
+                                            <button id="AzaltBtn" type="button" class="btn spinner-down btn-danger">
+                                                <i class="icon-minus"></i>
+                                            </button>
+                                        </div>
+                                        <input id="CocukSayisi" name="CocukSayisi" type="text" class="spinner-input CocukSayisiInput form-control" maxlength="3" min="0" max="4" value="0">
+                                        <div class="spinner-buttons input-group-btn">
+                                            <button id="CogaltBtn" type="button" class="btn spinner-up btn-warning">
+                                                <i class="icon-plus"></i>
+                                            </button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                                <div class="form-group col-md-3">
+                                    <label for="UcretliCocuk">Ücretli Çocuk</label>
+                                    <input type="number" min="0" class="form-control" id="UcretliCocuk" name="UcretliCocuk" value="0" readonly>
+                                </div>
+                            </div>
+                            <div class="row">
+                                @for (int i = 1; i <= 4; i++)
+                                {
+                                    <div class="form-group col-md-3 CocukYas@(i)">
+                                        <label for="CocukYasi@(i)">Çocuk @(i) Yaş</label>
+                                        <select name="CocukYasi@(i)" class="form-control" id="CocukYasi@(i)" data-prev-value="0">
+                                           
+                                            @for (int j = 0; j <= 17; j++)
+                                            {
+                                                <option value="@j">@j</option>
+                                                
+                                            }
+                                        </select>
+                                    </div>
+                                }
+                            </div>
+
+                            
+                           
+                          
+                                @*<div class="form-group col-md-5">
+                                    <label for="GecelikUcret">Gecelik Ücret</label>
+                                    <input type="text" class="form-control" id="GecelikUcret" name="GecelikUcret">
+                                </div>
+                           
+                            
+                                <div class="form-group col-md-3">
+                                    <label for="ToplamUcret">Toplam Ücret</label>
+                                    <input type="text" class="form-control" id="ToplamUcret" name="ToplamUcret">
+                                </div>*@
+
+                          <div class="row">
+                            <div class="form-group col-md-10">
+                                <button type="submit" class="btn btn-info">Ekle</button>
+                            </div>
+                            </div>
+                        </form>
+                       
+
+
+                    </div>
+                </section>
+            </div>
+            <div class="col-lg-5">
+                @if (!string.IsNullOrEmpty(ViewBag.ErrorMessage))
+                {
+                    <div style="margin-top:10px;" class="alert alert-block alert-danger fade in">
+                        <button data-dismiss="alert" class="close close-sm" type="button">
+                            <i class="icon-remove"></i>
+                        </button>
+                        <strong>Hata!</strong> @ViewBag.ErrorMessage
+                    </div>
+                }
+            </div>
+        </div>
+
+        <section class="panel">
+
+            <table class="table table-striped">
+                <thead>
+                    <tr>
+
+                        <th>Oda</th>
+                        <th>Müşteri</th>
+                    
+                        <th>Yetişkin</th>
+                        <th>Ücretli Çocuk</th>
+                        <th>Çocuk</th>
+                        <th>Gün</th>
+                        <th>Gecelik</th>
+                        <th>Toplam</th>
+                        <th>Giriş</th>
+                        <th>Çıkış</th>                       
+                        
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var rezervasyon in Model)
+                    {
+                        <tr>
+                            <td>@rezervasyon.Odalar.Adi</td>
+                            <td>@rezervasyon.Musteri.AdiSoyadi</td>
+                            
+                            <td>@rezervasyon.Yetiskin</td>
+                            <td>@rezervasyon.UcretliCocuk</td>
+                            <td>@rezervasyon.CocukSayisi</td>
+                            <td>@rezervasyon.KonaklamaGunSayisi</td>
+
+
+                            <td>@rezervasyon.GecelikUcret</td>
+
+
+
+
+
+
+                            <td>@rezervasyon.ToplamUcret</td>
+                            <td>@rezervasyon.GirisTarihi</td>
+                            <td>@rezervasyon.CikisTarihi</td>
+                            
+                            <td>
+                                <form method="post" action="@Url.Action("Update", "OtelRezervasyon")" style="display: inline;">
+                                    <input type="hidden" name="id" value="@rezervasyon.Id" />
+                                    <button type="submit" class="btn btn-primary btn-xs"><i class="icon-pencil"></i></button>
+                                </form>
+                                <form method="post" action="@Url.Action("Sil", "OtelRezervasyon")" style="display: inline;">
+                                    <input type="hidden" name="id" value="@rezervasyon.Id" />
+                                    <button type="submit" class="btn btn-danger btn-xs" onclick="confirmSilme(event)"><i class="icon-trash"></i></button>
+                                </form>
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+
+
+
+        </section>
+    </section>
+</section>
+
+<script src="/WebAdminTheme/js/jquery-1.8.3.min.js"></script>
+
+
+
+<script>
+    $(document).ready(function () {
+        var CocukSayisiDegeri = parseInt($(".CocukSayisiInput").val());
+        var Kontrol=false;
+        $(".CocukYas1, .CocukYas2, .CocukYas3, .CocukYas4").css("display", "none");
+        
+        $(".CocukSayisiInput").on("keydown", function (e) {
+            e.preventDefault();
+        });
+        
+        // ÇOĞALTMA BÖLÜMÜ
+       
+        $("#CogaltBtn").click(function () {
+           
+            if (CocukSayisiDegeri < 4) {
+                CocukSayisiDegeri += 1;
+                $(".CocukSayisiInput").val(CocukSayisiDegeri);
+
+                if (CocukSayisiDegeri <= 4) {
+                    $(".CocukYas" + CocukSayisiDegeri).css("display", "inline-block");
+                    
+                }
+
+                var yeniCocuk = $(".CocukYas").eq(0).clone();
+                yeniCocuk.find("select").val("0");
+               
+                $(".CocukYas").after(yeniCocuk);
+            }
+        });
+        // AZALTMA BÖLÜMÜ
+        $("#AzaltBtn").click(function () {
+            
+            if (CocukSayisiDegeri > 0) {
+                CocukSayisiDegeri -= 1;
+                $(".CocukSayisiInput").val(CocukSayisiDegeri);
+
+                var CocukYas = $(".CocukYas" + (CocukSayisiDegeri + 1));
+               
+                var CocukYasDeger = parseInt(CocukYas.find("select").val());
+
+                CocukYas.css("display", "none");
+
+                if (CocukYasDeger > 8) {
+                    if(UcretliCocukDegeri !=0){
+                        var UcretliCocukDegeri = parseInt($("#UcretliCocuk").val());
+
+                        UcretliCocukDegeri -= 1;
+                        $("#UcretliCocuk").val(UcretliCocukDegeri);
+                    }
+                   
+                }
+                
+                CocukYas.find("select").val(0);// Combobox değerini sıfırla
+           
+                
+                
+
+               
+                $(".CocukYas:last").remove();
+
+                if (CocukSayisiDegeri === 0) {
+                    UcretliCocukDegeri = 0;
+                    $("#UcretliCocuk").val(UcretliCocukDegeri);
+                }
+            }
+        });
+
+        //UCRETLİ ÇOCUK BÖLÜMÜ
+
+        $("select[name^='CocukYasi']").on("input", function () {
+            var secilenDeger = parseInt($(this).val());
+            var index = $(this).closest(".CocukYas").index();
+            UcretliCocukDegeri = $("#UcretliCocuk").val();
+            var prevValue = $(this).data("prev-value"); // Önceki değeri al
+           
+
+            
+            
+            
+            if (secilenDeger > 8) {
+                if (prevValue == 0 && $(this).is(":visible")) {
+                    UcretliCocukDegeri++;
+                    $(this).data("prev-value", secilenDeger); // Seçilen değeri prev-value olarak atama
+                } else if (prevValue >= 8 && secilenDeger >= 8) {
+                  
+                    $(this).data("prev-value", secilenDeger); 
+                }
+            } else {
+
+                if (secilenDeger <= 8 && UcretliCocukDegeri != 0 && prevValue > 8) {
+                    UcretliCocukDegeri--;
+                    
+                    $(this).removeData("prev-value");
+                }
+                
+            }
+
+            $("#UcretliCocuk").val(UcretliCocukDegeri);
+            if (CocukSayisiDegeri == 0) {
+                UcretliCocukDegeri = 0;
+                $("#UcretliCocuk").val(0);
+            }
+
+            console.log(UcretliCocukDegeri);
+        });
+
+       
+
+
+      
+    });
+</script>

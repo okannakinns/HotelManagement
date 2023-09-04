@@ -1,0 +1,120 @@
+﻿@using WebApp.Models;
+@model List<WebApp.Models.Fiyat>
+
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/Shared/_LayoutWebAdmin.cshtml";
+}
+<section id="main-content">
+    <section class="wrapper">
+        <div class="row">
+            <div class="col-lg-6">
+        <section class="panel">
+            <header class="panel-heading">
+                Fiyat (@Model.Count() Adet Kayıt Bulunmaktadır)
+            </header>
+            <div class="panel-body">
+                <form method="post" action="@Url.Action("Ekle", "Fiyat")">
+                    <div class="form-row">
+                                <div class="form-group col-md-5">
+                                    <label for="Adi">Oda</label>
+                                    <select name="OdalarId" class="form-control" id="OdalarId">
+                                        @foreach (var oda in ViewBag.Odalar)
+                                        {
+                                            <option value="@oda.Id">@oda.Adi</option>
+                                        }
+                                    </select>
+                                </div>
+                        <div class="form-group col-md-5">
+                            <label for="Tutar">Tutar</label>
+                                    <input type="text" class="form-control" id="Tutar" name="Tutar" maxlength="6" onkeypress="return event.charCode >= 48 && event.charCode <= 57">
+                        </div>
+                   
+                   
+                        <div class="form-group col-md-5">
+                            <label for="BaslangicTarihi">Başlangıç Tarihi</label>
+                            <input type="datetime-local" class="form-control" id="BaslangicTarihi" name="BaslangicTarihi" >
+                        </div>
+                        <div class="form-group col-md-5">
+                            <label for="BitisTarihi">Bitiş Tarihi</label>
+                            <input type="datetime-local" class="form-control" id="BitisTarihi" name="BitisTarihi" >
+                        </div>
+                    </div>
+                   
+                    <div class="form-row">
+                        <div class="form-group col-md-10">
+                            <label for="Aciklama">Açıklama</label>
+                                    <textarea class="form-control" id="aciklama" name="Aciklama" maxlength="130" rows="3"></textarea>
+                        </div>
+                       
+                    </div>
+                            <div class="form-group col-md-6">
+                    <button  type="submit" class="btn btn-info">Ekle</button>
+                            </div>
+                </form>
+                      
+
+
+            </div>
+            </section>
+            </div>
+            <div class="col-lg-5">
+            @if (!string.IsNullOrEmpty(ViewBag.ErrorMessage))
+            {
+                <div style="margin-top:10px;" class="alert alert-block alert-danger fade in">
+                    <button data-dismiss="alert" class="close close-sm" type="button">
+                        <i class="icon-remove"></i>
+                    </button>
+                    <strong>Hata!</strong> @ViewBag.ErrorMessage
+                </div>
+            }
+        </div>
+        </div>
+
+        <section class="panel">
+
+            <table class="table table-striped">
+                <thead>
+                    <tr>
+                        <th>Oda</th>
+                        <th>Tutar</th>
+                        <th>Başlangıç Tarihi</th>
+                        <th>Bitiş Tarihi</th>
+                        
+                        
+                        <th>Açıklama</th>
+                        
+                        
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var fiyat in Model)
+                    {
+                        <tr>
+                            <td>@fiyat.Odalar.Adi</td>
+                            <td>@fiyat.Tutar</td>
+                            <td>@fiyat.BaslangicTarihi</td>
+                            <td>@fiyat.BitisTarihi</td>
+                            
+                            
+                            <td>@fiyat.Aciklama</td>
+                            
+                            <td>
+                                <form method="post" action="@Url.Action("Update", "Fiyat")" style="display: inline;">
+                                    <input type="hidden" name="id" value="@fiyat.Id" />
+                                    <button type="submit" class="btn btn-primary btn-xs"><i class="icon-pencil"></i></button>
+                                </form>
+                                <form method="post" action="@Url.Action("Sil", "Fiyat")" style="display: inline;">
+                                    <input type="hidden" name="id" value="@fiyat.Id" />
+                                   <button type="submit" class="btn btn-danger btn-xs" onclick="confirmSilme(event)"><i class="icon-trash"></i></button>
+                                </form>
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+
+
+        </section>
+    </section>
+</section>

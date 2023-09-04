@@ -1,0 +1,80 @@
+﻿@using WebApp.Models;
+@model Musteri;
+
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/Shared/_LayoutWebAdmin.cshtml";
+}
+<section id="main-content">
+    <section class="wrapper">
+        <div class="row">
+            <div class="col-lg-5">
+                <section class="panel">
+                    <header class="panel-heading">
+                        Müşteri Güncelle
+                    </header>
+                    <div class="panel-body">
+                        <form method="post" action="@Url.Action("DoUpdate", "Musteri")">
+                          
+                                <input type="hidden" class="form-control" id="Id" name="Id" value="@Model.Id">
+                                <div class="form-group col-md-5">
+                                    <label for="adiSoyadi">Adı Soyadı</label>
+                                    <input type="text" class="form-control" id="adiSoyadi" name="AdiSoyadi" value="@Model.AdiSoyadi">
+                                </div>
+                          
+                           
+                                <div class="form-group col-md-5">
+                                    <label for="tcNo">TC Kimlik No</label>
+                                    <input type="text" class="form-control" id="TcNo" name="TcNo" value="@Model.TcNo" onkeypress="return event.charCode >= 48 && event.charCode <= 57" minlength="11" maxlength="11">
+                                </div>
+                          
+                            
+                                <div class="form-group col-md-5">
+                                    <label for="telefon">Telefon</label>
+                                <input type="text" class="form-control" placeholder="(500) 000-0000" data-mask="(999) 999-9999" id="telefon" name="Telefon" value="@Model.Telefon" onkeypress="return event.charCode >= 48 && event.charCode <= 57" minlength="10" maxlength="15">
+                                   
+                                </div>
+                          
+                            
+                                <div class="form-group col-md-5">
+                                    <label for="email">Email</label>
+                                    <input type="text" class="form-control" id="email" name="Email" maxlength="50" value="@Model.Email">
+                                </div>
+                           
+                           
+                                <div class="form-group col-md-10">
+                                    <label for="aciklama">Açıklama</label>
+                                    <textarea class="form-control" id="aciklama" name="Aciklama" rows="3" maxlength="130">@Model.Aciklama</textarea>
+                               
+                                <input type="hidden" class="form-control" id="Durumu" name="Durumu" value="@Model.Durumu">
+                                <input type="hidden" class="form-control" id="EklenmeTarihi" name="EklenmeTarihi" value="@Model.EklenmeTarihi">
+                                <input type="hidden" class="form-control" id="GuncellenmeTarihi" name="GuncellenmeTarihi" value="@Model.GuncellenmeTarihi">
+                                <input type="hidden" class="form-control" id="KaraListe" name="KaraListe" value="@Model.KaraListe">
+                                <input type="hidden" class="form-control" id="KaraListeAciklama" name="KaraListeAciklama" value="@Model.KaraListeAciklama">
+                                <input type="hidden" class="form-control" id="MusteriTuru" name="MusteriTuru" value="@Model.MusteriTuru">
+                            </div>
+                            
+                                <div class="form-group col-md-6">
+                                    <button type="submit" class="btn btn-info">Güncelle</button>
+                                </div>
+                           
+                        </form>
+                       
+                    </div>
+                </section>
+            </div>
+            <div class="col-md-5">
+                @if (!string.IsNullOrEmpty(ViewBag.ErrorMessage))
+                {
+                    <div class="alert alert-block alert-danger fade in">
+                        <button data-dismiss="alert" class="close close-sm" type="button">
+                            <i class="icon-remove"></i>
+                        </button>
+                        <strong>Hata!</strong> @ViewBag.ErrorMessage
+                    </div>
+                }
+            </div>
+        </div>
+    </section>
+</section>
+

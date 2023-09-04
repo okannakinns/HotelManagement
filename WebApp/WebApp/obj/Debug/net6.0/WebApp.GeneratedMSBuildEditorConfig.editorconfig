@@ -1,0 +1,125 @@
+is_global = true
+build_property.TargetFramework = net6.0
+build_property.TargetPlatformMinVersion = 
+build_property.UsingMicrosoftNETSdkWeb = true
+build_property.ProjectTypeGuids = 
+build_property.InvariantGlobalization = 
+build_property.PlatformNeutralAssembly = 
+build_property.EnforceExtendedAnalyzerRules = 
+build_property._SupportedPlatformList = Linux,macOS,Windows
+build_property.RootNamespace = WebApp
+build_property.RootNamespace = WebApp
+build_property.ProjectDir = C:\Users\oknak\Desktop\OtelYonetim\WebApp\WebApp\
+build_property.RazorLangVersion = 6.0
+build_property.SupportLocalizedComponentNames = 
+build_property.GenerateRazorMetadataSourceChecksumAttributes = 
+build_property.MSBuildProjectDirectory = C:\Users\oknak\Desktop\OtelYonetim\WebApp\WebApp
+build_property._RazorSourceGeneratorDebug = 
+
+[C:/Users/oknak/Desktop/OtelYonetim/WebApp/WebApp/Views/Deneme/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcRGVuZW1lXEluZGV4LmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/oknak/Desktop/OtelYonetim/WebApp/WebApp/Views/FiyatCarpan/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcRml5YXRDYXJwYW5cSW5kZXguY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/oknak/Desktop/OtelYonetim/WebApp/WebApp/Views/FiyatCarpan/Update.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcRml5YXRDYXJwYW5cVXBkYXRlLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/oknak/Desktop/OtelYonetim/WebApp/WebApp/Views/Fiyat/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcRml5YXRcSW5kZXguY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/oknak/Desktop/OtelYonetim/WebApp/WebApp/Views/Fiyat/Update.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcRml5YXRcVXBkYXRlLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/oknak/Desktop/OtelYonetim/WebApp/WebApp/Views/GirisYap/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcR2lyaXNZYXBcSW5kZXguY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/oknak/Desktop/OtelYonetim/WebApp/WebApp/Views/Home/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxJbmRleC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/oknak/Desktop/OtelYonetim/WebApp/WebApp/Views/Kaydol/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcS2F5ZG9sXEluZGV4LmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/oknak/Desktop/OtelYonetim/WebApp/WebApp/Views/Kullanicilar/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcS3VsbGFuaWNpbGFyXEluZGV4LmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/oknak/Desktop/OtelYonetim/WebApp/WebApp/Views/Kullanicilar/Update.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcS3VsbGFuaWNpbGFyXFVwZGF0ZS5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/oknak/Desktop/OtelYonetim/WebApp/WebApp/Views/Musteri/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcTXVzdGVyaVxJbmRleC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/oknak/Desktop/OtelYonetim/WebApp/WebApp/Views/Musteri/Update.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcTXVzdGVyaVxVcGRhdGUuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/oknak/Desktop/OtelYonetim/WebApp/WebApp/Views/OdaDurum/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcT2RhRHVydW1cSW5kZXguY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/oknak/Desktop/OtelYonetim/WebApp/WebApp/Views/OdaDurum/Update.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcT2RhRHVydW1cVXBkYXRlLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/oknak/Desktop/OtelYonetim/WebApp/WebApp/Views/OdaKontenjan/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcT2RhS29udGVuamFuXEluZGV4LmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/oknak/Desktop/OtelYonetim/WebApp/WebApp/Views/OdaKontenjan/Update.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcT2RhS29udGVuamFuXFVwZGF0ZS5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/oknak/Desktop/OtelYonetim/WebApp/WebApp/Views/OdalarSearch/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcT2RhbGFyU2VhcmNoXEluZGV4LmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/oknak/Desktop/OtelYonetim/WebApp/WebApp/Views/Odalar/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcT2RhbGFyXEluZGV4LmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/oknak/Desktop/OtelYonetim/WebApp/WebApp/Views/Odalar/Update.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcT2RhbGFyXFVwZGF0ZS5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/oknak/Desktop/OtelYonetim/WebApp/WebApp/Views/OdaTip/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcT2RhVGlwXEluZGV4LmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/oknak/Desktop/OtelYonetim/WebApp/WebApp/Views/OdaTip/Update.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcT2RhVGlwXFVwZGF0ZS5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/oknak/Desktop/OtelYonetim/WebApp/WebApp/Views/OtelRezervasyon/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcT3RlbFJlemVydmFzeW9uXEluZGV4LmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/oknak/Desktop/OtelYonetim/WebApp/WebApp/Views/OtelRezervasyon/Update.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcT3RlbFJlemVydmFzeW9uXFVwZGF0ZS5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/oknak/Desktop/OtelYonetim/WebApp/WebApp/Views/RezervasyonEkran/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcUmV6ZXJ2YXN5b25Fa3JhblxJbmRleC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/oknak/Desktop/OtelYonetim/WebApp/WebApp/Views/Shared/_LayoutWebAdmin.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXF9MYXlvdXRXZWJBZG1pbi5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/oknak/Desktop/OtelYonetim/WebApp/WebApp/Views/YatakTip/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcWWF0YWtUaXBcSW5kZXguY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/oknak/Desktop/OtelYonetim/WebApp/WebApp/Views/YatakTip/Update.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcWWF0YWtUaXBcVXBkYXRlLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 

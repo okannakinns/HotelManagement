@@ -1,0 +1,112 @@
+﻿@using WebApp.Models;
+@model FiyatCarpan
+
+@{
+    ViewData["Title"] = "Update";
+    Layout = "~/Views/Shared/_LayoutWebAdmin.cshtml";
+}
+<section id="main-content">
+    <section class="wrapper">
+        <div class="row">
+            <div class="col-lg-5">
+                <section class="panel">
+                    <header class="panel-heading">
+                        Fiyat Çarpan
+                    </header>
+                    <div class="panel-body">
+                        <form method="post" action="@Url.Action("DoUpdate", "FiyatCarpan")">
+                           
+                                <input type="hidden" class="form-control" id="Id" name="Id" value="@Model.Id">
+                                <div class="form-group col-md-4">
+                                    <label for="Adi">Oda</label>
+                                    <select name="OdalarId" class="form-control" id="OdalarId">
+                                        @foreach (var oda in ViewBag.Odalar)
+                                        {
+                                            <option value="@oda.Id" @(oda.Id == Model.OdalarId ? "selected" : "")>@oda.Adi</option>
+                                        }
+                                    </select>
+                                </div>
+
+                                <div class="form-group col-md-4">
+                                    <label for="TekKisilik">Tek Kişi</label>
+                                    <input type="text" class="form-control" id="TekKisilik" name="TekKisilik" value="@Model.TekKisilik" maxlength="6" onkeypress="return IsNumericOrComma(event)">
+                                </div>
+                                <div class="form-group col-md-4">
+                                    <label for="CiftKisilik">Çift Kişi</label>
+                                    <input type="text" class="form-control" id="CiftKisilik" name="CiftKisilik" value="@Model.CiftKisilik" maxlength="6" onkeypress="return IsNumericOrComma(event)">
+                                </div>
+                                <div class="form-group col-md-4">
+                                    <label for="UcKisilik">Üç Kişi</label>
+                                    <input type="text" class="form-control" id="UcKisilik" name="UcKisilik" value="@Model.UcKisilik" maxlength="6" onkeypress="return IsNumericOrComma(event)">
+                                </div>
+                                <div class="form-group col-md-4">
+                                    <label for="DortKisilik">Dört Kişi</label>
+                                    <input type="text" class="form-control" id="DortKisilik" name="DortKisilik" value="@Model.DortKisilik" maxlength="6" onkeypress="return IsNumericOrComma(event)">
+                                </div>
+                        
+                          
+                                <div class="form-group col-md-4">
+                                    <label for="BesKisilik">Beş Kişi</label>
+                                    <input type="text" class="form-control" id="BesKisilik" name="BesKisilik" value="@Model.BesKisilik" maxlength="6" onkeypress="return IsNumericOrComma(event)">
+                                </div>
+                                <div class="form-group col-md-4">
+                                    <label for="AltiKisilik">Altı Kişi</label>
+                                    <input type="text" class="form-control" id="AltiKisilik" name="AltiKisilik" value="@Model.AltiKisilik" maxlength="6" onkeypress="return IsNumericOrComma(event)">
+                                </div>
+                                <div class="form-group col-md-4">
+                                    <label for="Cocuk">Çocuk</label>
+                                    <input type="text" class="form-control" id="Cocuk" name="Cocuk" value="@Model.Cocuk" maxlength="6" onkeypress="return IsNumericOrComma(event)">
+                                </div>
+                                <input type="hidden" class="form-control" id="Durumu" name="Durumu" value="@Model.Durumu">
+                                <input type="hidden" class="form-control" id="EklenmeTarihi" name="EklenmeTarihi" value="@Model.EklenmeTarihi">
+                                <input type="hidden" class="form-control" id="GuncellenmeTarihi" name="GuncellenmeTarihi" value="@Model.GuncellenmeTarihi">
+                                <div class="form-group col-md-6">
+                                <button type="submit" class="btn btn-info">Güncelle</button>
+                                </div>
+                        
+                            
+                        </form>
+                        @if (!string.IsNullOrEmpty(ViewBag.ErrorMessage))
+                        {
+                            <div style="margin-top:10px;" class="alert alert-block alert-danger fade in">
+                                <button data-dismiss="alert" class="close close-sm" type="button">
+                                    <i class="icon-remove"></i>
+                                </button>
+                                <strong>Hata!</strong> @ViewBag.ErrorMessage
+                            </div>
+                        }
+
+                        
+
+                    </div>
+                </section>
+            </div>
+            <div class="col-lg-5">
+                @if (!string.IsNullOrEmpty(ViewBag.ErrorMessage))
+                {
+                    <div style="margin-top:10px;" class="alert alert-block alert-danger fade in">
+                        <button data-dismiss="alert" class="close close-sm" type="button">
+                            <i class="icon-remove"></i>
+                        </button>
+                        <strong>Hata!</strong> @ViewBag.ErrorMessage
+                    </div>
+                }
+            </div>
+        </div>
+    </section>
+</section>
+
+
+<script>
+    function IsNumericOrComma(event) {
+        var charCode = event.which ? event.which : event.keyCode;
+
+        // Sayılar: 0-9
+        // Virgül: ,
+        if ((charCode >= 48 && charCode <= 57) || charCode === 44) {
+            return true;
+        }
+
+        return false;
+    }
+</script>
